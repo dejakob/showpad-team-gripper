@@ -19,5 +19,9 @@
   "engines": {
     "node": "0.11.x"
   },
-  "homepage": "https://github.com/dejakob/showpad-team-gripper#readme"
+  "homepage": "https://github.com/dejakob/showpad-team-gripper#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
 }
