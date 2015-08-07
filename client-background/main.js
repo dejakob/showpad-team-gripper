@@ -28,6 +28,7 @@ function onSocketMessage(message)
         var color = actionToColorMap[action];
         console.log('color: ' + color);
         window.document.body.style.backgroundColor = '#' + color;
+        window.document.body.style.backgroundImage = url();
     }
 }
 
