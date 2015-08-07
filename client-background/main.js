@@ -4,9 +4,12 @@ var server = 'http://invadersjs.com:8080';
 var socket;
 
 var actionToColorMap = {
-    up      : '0000FF', // blue
-    down    : 'FF0000', // red
-    left    : '00FF00', // green
+    //up      : '0000FF', // blue
+    up      : '000000', // blue
+    //down    : 'FF0000', // red
+    down    : 'FFFFFF', // red
+    //left    : '00FF00', // green
+    left    : '888888', // green
     right   : 'FFFF00', // yellow
     dance   : 'FF00FF'  // pink-ish
 }
