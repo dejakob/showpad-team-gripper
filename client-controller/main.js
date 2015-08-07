@@ -4,6 +4,14 @@ var server = 'http://172.16.2.170:8080';
 var socket;
 var buttons;
 
+var actionToColorMap = {
+    up      : '0000FF', // blue
+    down    : 'FF0000', // red
+    left    : '00FF00', // green
+    right   : 'FFFF00', // yellow
+    dance   : 'FF00FF'  // pink-ish
+}
+
 function activate()
 {
     socket = io(server);
@@ -14,7 +22,11 @@ function addClickListener()
 {
     function onDocumentClick (event) {
         if (event.target.className.match(/\baction-button\b/)) {
-            sendColor(event.target.getAttribute('data-color'));
+            var action = event.target.getAttribute('data-action');
+
+            if (actionToColorMap.hasOwnProperty(action)) {
+                sendColor(actionToColorMap[action]);
+            }
         }
     }
 
