@@ -1,6 +1,6 @@
 'use strict';
 
-var server = 'http://172.16.2.170:8080';
+var server = 'http://invadersjs.com/:8080';
 var socket;
 
 
