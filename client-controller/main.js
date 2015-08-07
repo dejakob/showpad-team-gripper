@@ -4,14 +4,6 @@ var server = 'http://invadersjs.com:8080';
 var socket;
 var buttons;
 
-var actionToColorMap = {
-    up      : '0000FF', // blue
-    down    : 'FF0000', // red
-    left    : '00FF00', // green
-    right   : 'FFFF00', // yellow
-    dance   : 'FF00FF'  // pink-ish
-}
-
 function activate()
 {
     socket = io(server);
@@ -23,20 +15,17 @@ function addClickListener()
     function onDocumentClick (event) {
         if (event.target.className.match(/\baction-button\b/)) {
             var action = event.target.getAttribute('data-action');
-
-            if (actionToColorMap.hasOwnProperty(action)) {
-                sendColor(actionToColorMap[action]);
-            }
+            sendAction(action);
         }
     }
 
     document.addEventListener('click', onDocumentClick);
 }
 
-function sendColor(color)
+function sendAction(action)
 {
-    console.log('send color', color);
-    socket.emit('message', { color: color });
+    console.log('send action', action);
+    socket.emit('message', { action: action });
 }
 
 window.addEventListener('DOMContentLoaded', activate);
