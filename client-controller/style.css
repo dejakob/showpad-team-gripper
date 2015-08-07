@@ -21,14 +21,17 @@ html, body {
     background: #ddd;
 
     cursor: pointer;
+    outline: none;
 }
 
 .button:hover{
     background: #ccc;
+    outline: none;
 }
 
 .button:active, .button:focus {
     background: #aaa;
+    outline: none;
 }
 
 .button.up {
