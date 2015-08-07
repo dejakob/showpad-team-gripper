@@ -1,6 +1,6 @@
 'use strict';
 
-var server = 'http://invadersjs.com:8080';
+var server = 'https://showpad-team-gripper.herokuapp.com';
 var socket;
 
 var actionToColorMap = {
