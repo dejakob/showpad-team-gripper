@@ -1,23 +1,28 @@
 'use strict';
 
-var server = 'https://showpad-team-gripper.herokuapp.com';
 var socket;
+var server          = 'https://showpad-team-gripper.herokuapp.com';
+var sequence        = [];
 
-var actionToColorMap = {
-    //up      : '0000FF', // blue
-    up      : '000000', // blue
-    //down    : 'FF0000', // red
-    down    : 'FFFFFF', // red
-    //left    : '00FF00', // green
-    left    : '888888', // green
-    right   : 'FFFF00', // yellow
-    dance   : 'FF00FF'  // pink-ish
+var timeout         = 200;
+var intervalId      = null;
+
+var defaultColor    = '000000';
+var color1          = 'FFFFFF';
+var color0          = '888888'
+
+var actionToSequenceMap = {
+    left    : [color1, color0, color0],
+    right   : [color0, color1, color0],
+    up      : [color1, color1, color0],
+    down    : [color0, color0, color1],
+    dance   : [color1, color0, color1]
 }
-
 
 function activate()
 {
-    var socket = io(server);
+    intervalId = window.setInterval(playSequence, timeout);
+    socket = io(server);
     socket.on('message', onSocketMessage);
 }
 
@@ -25,11 +30,19 @@ function onSocketMessage(message)
 {
     if (message.hasOwnProperty('action')) {
         var action = message.action;
-        var color = actionToColorMap[action];
-        console.log('color: ' + color);
-        window.document.body.style.backgroundColor = '#' + color;
-        window.document.body.style.backgroundImage = url();
+        var actionSequence = actionToSequenceMap[action];
+        console.log('sequence: ' + actionSequence);
+
+        sequence = sequence.concat(actionSequence).concat([defaultColor]);
     }
+}
+
+function playSequence()
+{
+    var color = sequence.shift() || defaultColor;
+
+    window.document.body.style.backgroundColor = '#' + color;
+    window.document.body.style.backgroundImage = 'url()';
 }
 
 window.addEventListener('DOMContentLoaded', activate);
